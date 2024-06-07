@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema Gruta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h2>Bem vindo ao Dashboard!</h2>
+    </header>
+    <div class="dashboard_div">
+        <h1>Dashboard</h1>
+        <button onclick="window.location.href='{{ url_for('add_trabalhador_route') }}'">Adicionar Trabalhador</button>
+        <a href="{{ url_for('listar_funcionarios') }}"><button>Listar Funcionários</button></a>
+    </div>
+</body>
+</html>

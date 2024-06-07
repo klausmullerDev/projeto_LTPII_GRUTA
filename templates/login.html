@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Gruta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h2>Bem vindo ao sistema Gruta!</h2>
+    </header>
+    <div>
+
+        <form action="{{ url_for('dashboard') }}" method="post">
+            <h1>LOGIN</h1>
+            <input type="text" name="user_name" id="user_name" placeholder="Nome">
+            <input type="password" name="password" id="password" placeholder="Senha">
+            <button type="submit">Logar</button>
+        </form>
+    </div>
+</body>
+</html>
