@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Trabalhador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <h2>Editar Trabalhador</h2>
+</header>
+<div>
+    <form method="POST" action="{{ url_for('editar_trabalhador_route', id=trabalhador['id']) }}">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{ trabalhador['nome'] }}" required>
+
+        <label for="cargo">Cargo:</label>
+        <input type="text" id="cargo" name="cargo" value="{{ trabalhador['cargo'] }}" required>
+
+        <label for="data_contratacao">Data de Contratação:</label>
+        <input type="date" id="data_contratacao" name="data_contratacao" value="{{ trabalhador['data_contratacao'] }}"
+               required>
+
+        <label for="salario">Salário:</label>
+        <input type="number" id="salario" name="salario" value="{{ trabalhador['salario'] }}" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" value="{{ trabalhador['telefone'] }}">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ trabalhador['email'] }}" required>
+
+        <button type="submit">Atualizar</button>
+    </form>
+    <a href="{{ url_for('listar_funcionarios') }}">
+        <button>Voltar</button>
+    </a>
+</div>
+</body>
+</html>

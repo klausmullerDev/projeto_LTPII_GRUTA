@@ -11,33 +11,54 @@
         <h2>Lista de Funcionários</h2>
     </header>
     <div>
+        <form method="POST" action="{{ url_for('listar_funcionarios') }}">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="text" name="id" placeholder="ID"></th>
+                        <th><input type="text" name="nome" placeholder="Nome"></th>
+                        <th><input type="text" name="cargo" placeholder="Cargo"></th>
+                        <th><input type="date" name="data_contratacao" placeholder="Data de Contratação"></th>
+                        <th><input type="number" name="salario" placeholder="Salário"></th>
+                        <th><input type="text" name="telefone" placeholder="Telefone"></th>
+                        <th><input type="email" name="email" placeholder="Email"></th>
+                        <th><button type="submit">Filtrar</button></th>
+                    </tr>
+                    <tr>
+                        <th><a href="{{ url_for('listar_funcionarios', sort_by='id', order='asc' if sort_by != 'id' or order == 'desc' else 'desc') }}">ID</a></th>
+                        <th><a href="{{ url_for('listar_funcionarios', sort_by='nome', order='asc' if sort_by != 'nome' or order == 'desc' else 'desc') }}">Nome</a></th>
+                        <th><a href="{{ url_for('listar_funcionarios', sort_by='cargo', order='asc' if sort_by != 'cargo' or order == 'desc' else 'desc') }}">Cargo</a></th>
+                        <th><a href="{{ url_for('listar_funcionarios', sort_by='data_contratacao', order='asc' if sort_by != 'data_contratacao' or order == 'desc' else 'desc') }}">Data de Contratação</a></th>
+                        <th><a href="{{ url_for('listar_funcionarios', sort_by='salario', order='asc' if sort_by != 'salario' or order == 'desc' else 'desc') }}">Salário</a></th>
+                        <th><a href="{{ url_for('listar_funcionarios', sort_by='telefone', order='asc' if sort_by != 'telefone' or order == 'desc' else 'desc') }}">Telefone</a></th>
+                        <th><a href="{{ url_for('listar_funcionarios', sort_by='email', order='asc' if sort_by != 'email' or order == 'desc' else 'desc') }}">Email</a></th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trabalhador in funcionarios %}
+                        <tr>
+                            <td>{{ trabalhador.id }}</td>
+                            <td>{{ trabalhador.nome }}</td>
+                            <td>{{ trabalhador.cargo }}</td>
+                            <td>{{ trabalhador.data_contratacao }}</td>
+                            <td>{{ trabalhador.salario }}</td>
+                            <td>{{ trabalhador.telefone }}</td>
+                            <td>{{ trabalhador.email }}</td>
+                            <td>
+                                <a href="{{ url_for('editar_trabalhador_route', id=trabalhador.id) }}">Editar</a>
+                                <a href="{{ url_for('remover_trabalhador_route', id=trabalhador.id) }}">Remover</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+        <div>
+            <p>Total de Funcionários: {{ total_funcionarios }}</p>
+            <p>Total dos Salários: {{ total_salarios }}</p>
+        </div>
         <a href="{{ url_for('dashboard') }}"><button>Voltar</button></a>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Cargo</th>
-                    <th>Data de Contratação</th>
-                    <th>Salário</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for funcionario in funcionarios %}
-                <tr>
-                    <td>{{ funcionario.id }}</td>
-                    <td>{{ funcionario.nome }}</td>
-                    <td>{{ funcionario.cargo }}</td>
-                    <td>{{ funcionario.data_contratacao }}</td>
-                    <td>{{ funcionario.salario }}</td>
-                    <td>{{ funcionario.telefone }}</td>
-                    <td>{{ funcionario.email }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </div>
 </body>
 </html>
